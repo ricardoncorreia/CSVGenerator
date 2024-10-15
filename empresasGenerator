@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Nome do ficheiro
+arquivo="dados.csv"
+
+# Gerar o cabeçalho do CSV
+echo "Index,Organization Id,Name,Website,Country,Description,Founded,Industry,>
+
+# Arrays de valores para as colunas específicas
+nomes=("TechCorp" "Innovate Ltd" "Global Solutions" "NextGen" "Alpha Inc" "BetaTech" "Gamma Systems" "FutureWorks" "Visionary" "Synergy Co")
+websites=("www.techcorp.com" "www.innovateltd.com" "www.globalsolutions.net" "www.nextgen.org" "www.alphainc.biz" "www.betatech.co" "www.gammasystems.info" "www.futureworks.com" "www.visionary.io" "www.synergyco.net")
+paises=("USA" "UK" "Germany" "France" "Brazil" "Japan" "Canada" "India" "Austr")
+descricoes=("Leading tech company" "Innovative solutions provider" "Global leader in services" "Next generation technology" "Alpha level corporation" "Beta stage startup" "Gamma focused enterprise" "Future-oriented company" "Vision-driven organization" "Synergistic business")
+fundacoes=("1990" "2005" "2010" "2015" "2000" "1985" "1995" "2020" "2018" "1970")
+industrias=("Technology" "Finance" "Healthcare" "Manufacturing" "Education" "Education" "Energy" "Telecommunications" "Transportation" "Retail" "Agriculture")
+num_empregados=("50" "200" "1000" "5000" "100" "300" "150" "750" "1200" "3000")
+
+# Gerar 100 linhas de dados
+for i in {1..100}
+do
+    # Selecionar valores aleatórios para cada coluna
+    index=$i
+    org_id=$((1000 + $i))
+    nome=${nomes[$RANDOM % ${#nomes[@]}]}
+    website=${websites[$RANDOM % ${#websites[@]}]}
+    pais=${paises[$RANDOM % ${#paises[@]}]}
+    descricao=${descricoes[$RANDOM % ${#descricoes[@]}]}
+    fundacao=${fundacoes[$RANDOM % ${#fundacoes[@]}]}
+    industria=${industrias[$RANDOM % ${#industrias[@]}]}
+    num_empregados=${num_empregados[$RANDOM % ${#num_empregados[@]}]}
+
+    # Adicionar a linha ao ficheiro CSV
+    echo "$index,$org_id,$nome,$website,$pais,$descricao,$fundacao,$industria,$num_empregados" >> $arquivo
+done
+
+echo "Ficheiro $arquivo criado com sucesso."
